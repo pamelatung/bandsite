@@ -1,0 +1,9 @@
+@import "defaults";
+
+@mixin testvar($colour) {
+	background: $colour;
+}
+
+body {
+	@include testvar(#000);
+}
