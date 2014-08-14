@@ -1,9 +1,112 @@
 @import "defaults";
 
-@mixin testvar($colour) {
-	background: $colour;
+//FONT STYLES
+$font-default: 'Helvetica Neue', 'Arial', sans-serif;
+$size-h1: 36px;
+$size-h2: 24px;
+$size-h3: 20px;
+$size-p: 16px;
+$size-tiny: 12px;
+$heavy: 800;
+$medium: 400;
+$light: 100;
+
+.site-branding {
+	background: rgba(0,0,0,0.25);
+
+	h1.site-title a {
+		font-family: $font-default;
+		font-size: $size-h1;
+		font-weight: $heavy;
+		color: #FFF;
+	}
+}	
+
+nav.main-navigation {
+	// margin: 0 auto;
+
+	ul {
+		margin: 10px 20px;
+
+	  li a {
+			padding: 5px 10px;
+			// color: #333;
+			background: #FFF;
+		}
+	}
+}
+
+h1.entry-title {
+	font-size: $size-h2;
+	font-weight: $heavy;
+
+	a {
+	color: #000;
+		
+		&:hover {
+		color: darkturquoise;
+		}
+
+		&:visited {
+		color: #000;
+
+			&:hover {
+				color: darkturquoise;
+			}
+		}	
+	}
+}
+
+.site-content {
+	width: 80%;
+	padding: 50px 0;
+	margin: 0 auto;
+}
+
+.site-footer {
+	width: 80%;
+	margin: 0 auto;
+	font-size: $size-tiny;
+
+	a {	
+		color: #000;
+		
+		&:hover {
+		color: darkturquoise;
+
+		}
+	}
+}
+
+.entry-footer {
+	font-size: $size-tiny;
+	a {	
+		color: #000;
+		
+		&:hover {
+		color: darkturquoise;
+
+		}
+	}
+}
+
+a {
+	text-decoration: none;
+	color: #000;
 }
 
 body {
-	@include testvar(#000);
+	background: url(images/geometry.png);
+	font-family: $font-default;
+	font-size: $size-p;
+
+	a {
+		text-decoration: none;
+		color: #000;
+
+		&:hover {
+			color: darkturquoise;
+		}
+	}
 }
+
