@@ -92,7 +92,22 @@ add_action( 'widgets_init', 'explosions_widgets_init' );
  * Enqueue scripts and styles.
  */
 function explosions_scripts() {
+
+	wp_deregister_script('jquery');
+	wp_register_script(
+	  'jquery', 
+	  "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js", 
+	  false, 
+	  null, 
+	  true
+	);
+	wp_enqueue_script('jquery');
+
+	wp_enqueue_script('jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js', array('jquery'), '1.11.1');
+
 	wp_enqueue_style( 'explosions-style', get_stylesheet_uri() );
+
+	wp_enqueue_script( 'explosions-main', get_template_directory_uri() . '/js/main.js', array(), '20140816', true );
 
 	wp_enqueue_script( 'explosions-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 

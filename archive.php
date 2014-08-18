@@ -18,22 +18,22 @@ get_header(); ?>
 				<h1 class="page-title">
 					<?php
 						if ( is_category() ) :
-							single_cat_title();
+							// single_cat_title();
 
 						elseif ( is_tag() ) :
-							single_tag_title();
+							// single_tag_title();
 
 						elseif ( is_author() ) :
-							printf( __( 'Author: %s', 'explosions' ), '<span class="vcard">' . get_the_author() . '</span>' );
+							// printf( __( 'Author: %s', 'explosions' ), '<span class="vcard">' . get_the_author() . '</span>' );
 
 						elseif ( is_day() ) :
-							printf( __( 'Day: %s', 'explosions' ), '<span>' . get_the_date() . '</span>' );
+							// printf( __( 'Day: %s', 'explosions' ), '<span>' . get_the_date() . '</span>' );
 
 						elseif ( is_month() ) :
-							printf( __( 'Month: %s', 'explosions' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'explosions' ) ) . '</span>' );
+							// printf( __( 'Month: %s', 'explosions' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'explosions' ) ) . '</span>' );
 
 						elseif ( is_year() ) :
-							printf( __( 'Year: %s', 'explosions' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'explosions' ) ) . '</span>' );
+							// printf( __( 'Year: %s', 'explosions' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'explosions' ) ) . '</span>' );
 
 						elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
 							_e( 'Asides', 'explosions' );

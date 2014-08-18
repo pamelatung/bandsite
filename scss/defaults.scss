@@ -414,6 +414,7 @@ textarea {
 5.1 Links
 --------------------------------------------------------------*/
 a {
+	text-decoration: none;
 	color: #333;
 }
 
@@ -431,10 +432,13 @@ a:active {
 5.2 Menus
 --------------------------------------------------------------*/
 .main-navigation {
+	position: fixed;
+	top: 0;
 	clear: both;
 	// float: left;
 	margin: 0 auto;
 	width: 100%;
+	z-index: 999;
 }
 
 .main-navigation ul {
@@ -662,7 +666,7 @@ a:active {
 .page-content,
 .entry-content,
 .entry-summary {
-	margin: 1.5em 0 0;
+	// margin: 1.5em 0 0;
 }
 
 .page-links {

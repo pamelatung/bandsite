@@ -13,7 +13,7 @@
 
 <?php if (is_front_page()) : ?>
 
-	<div class="entry-content-front">
+	<div class="entry-content">
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(
@@ -26,18 +26,7 @@
 <?php elseif (is_page()) : ?>
 
 	<div class="entry-content-pages">
-		<?php the_content(); ?>
-		<?php
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'explosions' ),
-				'after'  => '</div>',
-			) );
-		?>
-	</div><!-- .entry-content -->
-
-<?php elseif (is_home()) : ?>
-
-	<div class="entry-content-pages">
+	<p>this is on content-page.php</p>
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(

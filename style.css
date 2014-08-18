@@ -387,6 +387,7 @@ textarea {
 5.1 Links
 --------------------------------------------------------------*/
 a {
+  text-decoration: none;
   color: #333; }
 
 a:visited {
@@ -401,9 +402,12 @@ a:active {
 5.2 Menus
 --------------------------------------------------------------*/
 .main-navigation {
+  position: fixed;
+  top: 0;
   clear: both;
   margin: 0 auto;
-  width: 100%; }
+  width: 100%;
+  z-index: 999; }
 
 .main-navigation ul {
   list-style: none;
@@ -580,11 +584,6 @@ a:active {
 .group-blog .byline {
   display: inline; }
 
-.page-content,
-.entry-content,
-.entry-summary {
-  margin: 1.5em 0 0; }
-
 .page-links {
   clear: both;
   margin: 0 0 1.5em; }
@@ -691,63 +690,518 @@ object {
 .gallery-caption {
   display: block; }
 
+/* ======================
+	BODY AND NAVIGATION BAR
+========================= */
+body {
+  font-family: "Source Sans Pro", "Helvetica Neue", "Arial", sans-serif;
+  font-size: 16px;
+  background-color: #000;
+  background: url(images/nightsky-mute.jpg);
+  background-size: cover; }
+
+nav {
+  -webkit-transition: all 1s;
+  transition: all 1s; }
+  nav .menu ul {
+    margin: 20px 0; }
+    nav .menu ul li a {
+      margin: 0 20px;
+      padding-bottom: 5px;
+      font-family: "Nothing You Could Do", "Helvetica Neue", "Arial", sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: #FFF;
+      text-transform: uppercase;
+      background: none;
+      -webkit-transition: all 0.25s; }
+      nav .menu ul li a:hover {
+        color: peachpuff;
+        border-bottom: 1px solid peachpuff; }
+
+/* ======================
+	SITE BANNER STYLES
+======================= */
 .site-branding {
-  background: rgba(0, 0, 0, 0.25); }
+  height: 800px;
+  text-align: center;
+  padding-top: 140px;
+  background: none; }
   .site-branding h1.site-title a {
-    font-family: "Helvetica Neue", "Arial", sans-serif;
-    font-size: 36px;
+    position: fixed;
+    bottom: 40%;
+    width: 80%;
+    margin: 0 0 0 -40%;
+    left: 50%;
+    font-family: "Codystar", "Helvetica Neue", "Arial", sans-serif;
+    font-size: 72px;
     font-weight: 800;
+    color: #FFF;
+    z-index: 100;
+    -webkit-transition: all 0.5s; }
+
+.site-branding-pages {
+  height: 85px;
+  padding-top: 10px;
+  background: none; }
+  .site-branding-pages h1.site-title {
+    font-family: "Codystar", "Helvetica Neue", "Arial", sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 12px 0 0 30px; }
+    .site-branding-pages h1.site-title a {
+      color: #FFF; }
+
+/* =================
+	BLOG STYLES
+================= */
+.content-area {
+  float: left;
+  width: 73%; }
+
+article.hentry {
+  background: #F0EBDF;
+  padding: 30px 50px;
+  margin: 0; }
+  article.hentry h1.entry-title {
+    font-family: "Codystar", "Helvetica Neue", "Arial", sans-serif;
+    font-size: 45px;
+    font-weight: 800;
+    color: #4D3E2F;
+    background: turquoise; }
+    article.hentry h1.entry-title a {
+      color: #4D3E2F; }
+  article.hentry:nth-of-type(even) {
+    background: #DFF0E9; }
+
+nav.navigation.post-navigation {
+  background: #FFF;
+  margin: 0; }
+
+.comments-area {
+  background: #DEDEDE;
+  padding: 30px 50px;
+  margin: 0; }
+  .comments-area h3, .comments-area label {
+    font-size: 20px; }
+  .comments-area .comment-form p {
+    font-size: 16px;
+    font-weight: 400; }
+  .comments-area #submit {
+    background: #FFF;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    text-shadow: none; }
+    .comments-area #submit:hover {
+      background: darkcyan; }
+  .comments-area textarea {
+    border: 1px solid #FFF;
+    border-radius: 5px; }
+    .comments-area textarea:focus {
+      outline: none;
+      background: #DCE3E8; }
+  .comments-area code {
+    background: #C9C9C9; }
+
+.widget-area {
+  float: left;
+  width: 23%;
+  margin: 20px 20px 0 20px;
+  padding: 0 20px;
+  color: #FFF; }
+  .widget-area h1 {
+    cursor: pointer; }
+  .widget-area ul {
+    margin: 0; }
+    .widget-area ul li {
+      list-style-type: none;
+      padding: 5px 10px; }
+      .widget-area ul li a {
+        color: #FFF; }
+      .widget-area ul li:hover {
+        background: #C1DED9; }
+        .widget-area ul li:hover a {
+          color: #000; }
+        .widget-area ul li:hover:nth-of-type(even) {
+          background: #A5C7D9; }
+  .widget-area label {
     color: #FFF; }
+    .widget-area label .search-field {
+      background: none;
+      border: 1px solid #FFF;
+      color: #FFF; }
+      .widget-area label .search-field:focus {
+        outline: none;
+        border: 1px solid peachpuff;
+        background: rgba(255, 255, 255, 0.1); }
 
-nav.main-navigation ul {
-  margin: 10px 20px; }
-  nav.main-navigation ul li a {
-    padding: 5px 10px;
-    background: #FFF; }
+/* ===================
+	NON-BLOG STYLES
+=================== */
+.site-content, .site-content-home {
+  width: 100%;
+  padding: 0;
+  margin: 0 auto;
+  /* ===================
+   DISCOGRAPHY SECTIONS
+  =================== */ }
+  .site-content .content-area, .site-content-home .content-area {
+    width: 100%; }
+  .site-content header.entry-header, .site-content-home header.entry-header {
+    margin: 0; }
+  .site-content article.hentry, .site-content-home article.hentry {
+    padding: 0;
+    margin: 0;
+    background: none; }
+    .site-content article.hentry h1.entry-title, .site-content-home article.hentry h1.entry-title {
+      font-size: 24px;
+      font-weight: 800; }
+  .site-content .entry-content, .site-content-home .entry-content {
+    background: #000;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    -webkit-transition: all 1s; }
+  .site-content .entry-content-pages, .site-content-home .entry-content-pages {
+    width: 75%;
+    padding: 20px;
+    margin: 0 auto;
+    background: #DFE7F0; }
+    .site-content .entry-content-pages h1, .site-content-home .entry-content-pages h1 {
+      font-size: 24px;
+      font-weight: 800; }
+  .site-content .bandinfo, .site-content-home .bandinfo {
+    position: absolute;
+    top: 700px;
+    left: 4000px;
+    height: 350px;
+    width: 51%;
+    margin: 0;
+    background: url("images/wc-1.png");
+    background-size: cover;
+    z-index: 120;
+    -webkit-transition: all 0.5s;
+    padding: 30px;
+    color: #FFF;
+    font-weight: 100;
+    letter-spacing: 1px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-left: 25px solid rgba(220, 20, 60, 0.75); }
+  .site-content .bandphoto, .site-content-home .bandphoto {
+    position: absolute;
+    top: 700px;
+    left: -2500px;
+    height: 350px;
+    width: 51%;
+    margin: 0;
+    background: url("images/bandphoto-1.jpg");
+    background-size: cover;
+    z-index: 120;
+    -webkit-transition: all 0.5s; }
+  .site-content .pavalanche, .site-content-home .pavalanche {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 350px;
+    z-index: 120;
+    overflow-x: hidden; }
+    .site-content .pavalanche .pavalancheImage, .site-content-home .pavalanche .pavalancheImage {
+      position: absolute;
+      top: 2000px;
+      left: 0px;
+      width: 100%;
+      height: 350px;
+      background: url("images/princeavalanche.jpg");
+      background-size: cover;
+      opacity: 0.4;
+      -webkit-filter: grayscale(1);
+      filter: grayscale(1);
+      -webkit-transition: all 0.5s;
+      transition: all 0.5s;
+      z-index: 121; }
+    .site-content .pavalanche .pavHover, .site-content-home .pavalanche .pavHover {
+      -webkit-filter: grayscale(0);
+      filter: grayscale(0);
+      opacity: 1; }
+    .site-content .pavalanche .pavalancheInfo, .site-content-home .pavalanche .pavalancheInfo {
+      position: absolute;
+      top: 0px;
+      left: 95%;
+      width: 51%;
+      height: 350px;
+      padding: 30px 45px;
+      margin: 0;
+      background: url("images/wc-2.png");
+      background-size: cover;
+      color: #FFF;
+      font-weight: 300;
+      letter-spacing: 1px;
+      -webkit-transition: all 0.5s;
+      z-index: 122;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      border-left: 25px solid rgba(0, 139, 139, 0.75); }
+    .site-content .pavalanche .pavSlide, .site-content-home .pavalanche .pavSlide {
+      left: 49%; }
+  .site-content .takecare, .site-content-home .takecare {
+    position: absolute;
+    top: 350px;
+    left: 0;
+    width: 100%;
+    height: 350px;
+    z-index: 120; }
+    .site-content .takecare .takecareImage, .site-content-home .takecare .takecareImage {
+      position: absolute;
+      top: 0px;
+      left: 4000px;
+      width: 100%;
+      height: 350px;
+      background: url("images/takecare.jpg");
+      background-size: cover;
+      opacity: 0.4;
+      -webkit-filter: grayscale(1);
+      filter: grayscale(1);
+      -webkit-transition: all 0.5s;
+      transition: all 0.5s;
+      z-index: 121; }
+    .site-content .takecare .tcHover, .site-content-home .takecare .tcHover {
+      -webkit-filter: grayscale(0);
+      filter: grayscale(0);
+      opacity: 1; }
+    .site-content .takecare .takecareInfo, .site-content-home .takecare .takecareInfo {
+      position: absolute;
+      top: 0px;
+      left: -45%;
+      width: 51%;
+      height: 350px;
+      padding: 30px 45px;
+      margin: 0;
+      background: url("images/wc-3.png");
+      background-size: cover;
+      color: #FFF;
+      font-weight: 300;
+      letter-spacing: 1px;
+      -webkit-transition: all 0.5s;
+      z-index: 122;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border-right: 25px solid rgba(255, 215, 0, 0.75); }
+    .site-content .takecare .tcSlide, .site-content-home .takecare .tcSlide {
+      left: 0; }
 
-h1.entry-title {
-  font-size: 24px;
-  font-weight: 800; }
-  h1.entry-title a {
-    color: #000; }
-    h1.entry-title a:hover {
-      color: darkturquoise; }
-    h1.entry-title a:visited {
-      color: #000; }
-      h1.entry-title a:visited:hover {
-        color: darkturquoise; }
+/* ==============================
+	SHAPES - SITE-BRANDING AREA
+=============================== */
+.shapesContainer {
+  height: 800px;
+  background: none; }
 
-.site-content {
-  width: 80%;
-  padding: 50px 0;
-  margin: 0 auto; }
+.hexagonWrap {
+  position: absolute;
+  top: -50%;
+  left: 3%;
+  opacity: 0.1;
+  -webkit-transition: opacity 0.5s, -webkit-transform 0.5s; }
+
+#hexagon {
+  width: 100px;
+  height: 55px;
+  background: red;
+  position: relative; }
+
+#hexagon:before {
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 25px solid red; }
+
+#hexagon:after {
+  content: "";
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 25px solid red;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+      transform: rotate(180deg); }
+
+.hexagonWrap-2 {
+  position: absolute;
+  top: -80%;
+  left: 22%;
+  opacity: 0.1;
+  -webkit-transition: opacity 0.5s, -webkit-transform 0.5s; }
+
+#hexagon-2 {
+  width: 200px;
+  height: 110px;
+  background: turquoise;
+  position: relative; }
+
+#hexagon-2:before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 50px solid turquoise; }
+
+#hexagon-2:after {
+  content: "";
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 50px solid turquoise;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+      transform: rotate(180deg); }
+
+.hexagonWrap-3 {
+  position: absolute;
+  top: -35%;
+  left: 18%;
+  opacity: 0.1;
+  -webkit-transition: opacity 0.5s, -webkit-transform 0.5s; }
+
+#hexagon-3 {
+  width: 75px;
+  height: 41.5px;
+  background: orange;
+  position: relative; }
+
+#hexagon-3:before {
+  content: "";
+  position: absolute;
+  top: -19px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 37.5px solid transparent;
+  border-right: 37.5px solid transparent;
+  border-bottom: 19px solid orange; }
+
+#hexagon-3:after {
+  content: "";
+  position: absolute;
+  bottom: -18.75px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 37.5px solid transparent;
+  border-right: 37.5px solid transparent;
+  border-bottom: 18.75px solid orange;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+      transform: rotate(180deg); }
+
+.hexagonWrap-4 {
+  position: absolute;
+  top: -44%;
+  left: 29%;
+  opacity: 0.1;
+  -webkit-transition: opacity 0.5s, -webkit-transform 0.5s; }
+
+#hexagon-4 {
+  width: 40px;
+  height: 22px;
+  background: gold;
+  position: relative; }
+
+#hexagon-4:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 10px solid gold; }
+
+#hexagon-4:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 10px solid gold;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+      transform: rotate(180deg); }
+
+.hexagonWrap-5 {
+  position: absolute;
+  top: -40%;
+  left: 40%;
+  opacity: 0.1;
+  -webkit-transition: opacity 0.5s, -webkit-transform 0.5s; }
+
+#hexagon-5 {
+  width: 240px;
+  height: 132px;
+  background: cornflowerblue;
+  position: relative; }
+
+#hexagon-5:before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 120px solid transparent;
+  border-right: 120px solid transparent;
+  border-bottom: 60px solid cornflowerblue; }
+
+#hexagon-5:after {
+  content: "";
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 120px solid transparent;
+  border-right: 120px solid transparent;
+  border-bottom: 60px solid cornflowerblue;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+      transform: rotate(180deg); }
+
+.visible {
+  opacity: 0.65; }
 
 .site-footer {
-  width: 80%;
-  margin: 0 auto;
-  font-size: 12px; }
-  .site-footer a {
-    color: #000; }
-    .site-footer a:hover {
-      color: darkturquoise; }
+  width: 100%;
+  font-size: 12px;
+  margin: 20px 0 20px 20px;
+  clear: both; }
 
 .entry-footer {
-  font-size: 12px; }
-  .entry-footer a {
-    color: #000; }
-    .entry-footer a:hover {
-      color: darkturquoise; }
-
-a {
-  text-decoration: none;
-  color: #000; }
-
-body {
-  background: url(images/geometry.png);
-  font-family: "Helvetica Neue", "Arial", sans-serif;
-  font-size: 16px; }
-  body a {
-    text-decoration: none;
-    color: #000; }
-    body a:hover {
-      color: darkturquoise; }
+  font-size: 12px;
+  clear: both; }
