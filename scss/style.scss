@@ -2,111 +2,756 @@
 
 //FONT STYLES
 $font-default: 'Helvetica Neue', 'Arial', sans-serif;
-$size-h1: 36px;
+$font-default-2: 'Source Sans Pro', 'Helvetica Neue', 'Arial', sans-serif;
+$font-special: 'Codystar', 'Helvetica Neue', 'Arial', sans-serif;
+$font-nav: 'Nothing You Could Do', 'Helvetica Neue', 'Arial', sans-serif;
+//FONT SIZES
+$size-h1: 72px;
+$blog-title: 45px;
 $size-h2: 24px;
 $size-h3: 20px;
 $size-p: 16px;
 $size-tiny: 12px;
+//FONT WEIGHTS
 $heavy: 800;
 $medium: 400;
+$med-light: 300;
 $light: 100;
+$spacing: 1px;
 
-.site-branding {
-	background: rgba(0,0,0,0.25);
+//BAND INTRODUCTION MIXIN
+@mixin bandIntro($imagelink, $top, $left) {
+	position: absolute;
+	top: $top;
+	left: $left;
+	height: 350px;
+	width: 51%;
+	margin: 0;
+	background: url($imagelink);
+	background-size: cover;
+	z-index: 120;
+	transition: all 0.5s;
+}
 
-	h1.site-title a {
-		font-family: $font-default;
-		font-size: $size-h1;
-		font-weight: $heavy;
-		color: #FFF;
-	}
-}	
+//DISCOGRAPHY MIXINS
+@mixin discImage($imagelink, $top, $left) {
+	position: absolute;
+	top: $top;
+	left: $left;
+	width: 100%;
+	height: 350px;
+	background: url($imagelink);
+	background-size: cover;
+	opacity: 0.4;
+	filter: grayscale(1);
+	transition: all 0.5s;
+	z-index: 121;
+}
 
-nav.main-navigation {
-	// margin: 0 auto;
+@mixin discInfo($imagelink, $top, $left) {
+	position: absolute;
+	top: $top;
+	left: $left;
+	width: 51%;
+	height: 350px;
+	padding: 30px 45px;
+	margin: 0;
+	background: url($imagelink);
+	background-size: cover;
+	color: #FFF;
+	font-weight: $med-light;
+	letter-spacing: $spacing;
+	transition: all 0.5s;
+	z-index: 122;
+}
 
-	ul {
-		margin: 10px 20px;
+//PAGE PANELS - ABOUT, CONTACT
+@mixin pageInfo($top, $left, $width, $color) {
+	position: absolute;
+	top: $top;
+	left: $left;
+	width: $width;
+	height: 750px;
+	padding: 30px 50px;
+	background: $color;
+	opacity: 0.75;
+	z-index: 121;
+	transition: all 0.5s;
+}
 
-	  li a {
-			padding: 5px 10px;
-			// color: #333;
-			background: #FFF;
-		}
+@mixin pageImage($imageLink, $top, $left) {
+	position: absolute;
+	top: $top;
+	left: $left;
+	width: 100%;
+	height: 750px;
+	background: url($imageLink);
+	background-size: cover;
+	z-index: 120;
+}
+
+//HOME PAGE HEXAGONS
+@mixin wrap($top, $left) {
+	position: absolute;
+	top: $top;
+	left: $left;
+	opacity: 0.15;
+	transition: opacity 0.5s, transform 0.5s;
+}
+
+@mixin hexagon($width, $height, $color) {
+	width: $width;
+	height: $height;
+	background: $color;
+	position: relative;
+}
+@mixin hexagonBefore($top, $border1, $border2, $color) {
+	content: "";
+	position: absolute;
+	top: $top;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: $border1 solid transparent;
+	border-right: $border1 solid transparent;
+	border-bottom: $border2 solid $color;
+}
+@mixin hexagonAfter($bottom, $border1, $border2, $color) {
+	content: "";
+	position: absolute;
+	bottom: $bottom;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-left: $border1 solid transparent;
+	border-right: $border1 solid transparent;
+	border-bottom: $border2 solid $color;
+	transform: rotate(180deg);
+}
+
+/* ======================
+	BODY AND NAVIGATION BAR
+========================= */
+
+body {
+	font-family: $font-default-2;
+	font-size: $size-p;
+	background-color: #000;
+	background: url(images/nightsky-mute.jpg);
+	background-size: cover;
+}
+
+// NAVIGATION BAR
+nav {
+	-webkit-transition: all 1s;
+					transition: all 1s;
+
+	.menu ul {
+		margin: 20px 0;
+
+		  li a {
+				margin: 0 20px;
+				padding-bottom: 5px;
+				font-family: $font-nav;
+				font-size: $size-h3;
+				font-weight: $medium;
+				color: #FFF;
+				text-transform: uppercase;
+				background: none;
+				-webkit-transition: all 0.25s;
+
+					&:hover {
+						color: peachpuff;
+						border-bottom: 1px solid peachpuff;
+					}
+			}
 	}
 }
 
-h1.entry-title {
-	font-size: $size-h2;
-	font-weight: $heavy;
+/* ======================
+	SITE BANNER STYLES
+======================= */
 
-	a {
-	color: #000;
-		
-		&:hover {
-		color: darkturquoise;
+//HOME PAGE SITE BANNER 
+.site-branding {
+	height: 800px;
+	text-align: center;
+	padding-top: 140px;
+	background: none;
+
+		h1.site-title a {
+			position: fixed;
+			bottom: 40%;
+			width: 80%;
+			margin: 0 0 0 -40%;
+			left: 50%;
+			font-family: $font-special;
+			font-size: $size-h1;
+			font-weight: $heavy;
+			color: #FFF;
+			z-index: 100;
+			-webkit-transition: all 0.5s;
+		}
+}	
+
+//NORMAL PAGE SITE BANNERS
+.site-branding-pages {
+	height: 85px;
+	padding-top: 10px;
+	background: none;
+
+		h1.site-title {
+			font-family: $font-special;
+			font-size: $size-h2;
+			font-weight: $medium;
+			margin: 12px 0 0 30px;
+
+				a {
+					color: #FFF;
+				}
+		}
+}
+
+/* =================
+	BLOG STYLES
+================= */
+
+//BLOG CONTENT AREA
+.content-area {
+	float: left;
+	width: 73%;
+}
+
+//ENTRY CONTENT IN BLOG
+article.hentry  {
+	background: #DEDEDE;
+	margin: 0;
+	border-top-right-radius: 30px;
+	border-bottom-right-radius: 30px;
+
+		.entry-content {
+		padding: 30px 50px;
+		margin: 0;
+		}
+		.entry-meta {
+			padding: 30px 50px 0 50px;
+			font-weight: $heavy;
+		}
+		footer.entry-footer {
+			padding: 30px 50px;
+			background: #FFF;
+			font-size: $size-p;
+			border-bottom-right-radius: 30px;
+
+				.comments-link a, .edit-link a {
+					padding: 0 15px;
+				}
 		}
 
-		&:visited {
+	h1.entry-title {
+		padding: 30px 50px;
+		margin: 0;
+		font-family: $font-special;
+		font-size: $blog-title;
+		font-weight: $heavy;
 		color: #000;
+		background: #A8A8A8;
+		border-top-right-radius: 30px;
+		-webkit-transition: all 0.25s;
 
 			&:hover {
-				color: darkturquoise;
+				background: #FFFBED;
+					a {
+						color: rosybrown;
+					}
+			}
+
+			a {
+				color: #4D3E2F;
+			}
+		}
+}
+
+//PREVIOUS ENTRY LINK DIV
+nav.navigation.paging-navigation {
+	background: rosybrown;
+	padding: 30px 50px;
+	margin: 0;
+	border-top-right-radius: 30px;
+	border-bottom-right-radius: 30px;
+	a {
+		color: #FFF;
+		text-transform: uppercase;
+	}
+}
+nav.navigation.post-navigation {
+	background: #FFF;
+	padding: 30px 50px;
+	margin: 0;
+}
+
+//BLOG COMMENTS AREA AND FORMS
+.comments-area {
+	background: #DEDEDE;
+	padding: 30px 50px;
+	margin: 0;
+
+	h3, label {
+		font-size: $size-h3;
+	}
+
+	.comment-form p {
+		font-size: $size-p;
+		font-weight: $medium;
+	}
+
+	//POST COMMENT BUTTON
+	#submit {
+		background: #FFF;
+		font-size: 14px;
+		padding: 10px;
+		border-radius: 4px;
+		border: none;
+		box-shadow: none;
+		text-shadow: none;
+		&:hover {
+			background: darkcyan;
+		}
+	}
+	//COMMENT TEXT AREA
+	textarea {
+		border: 1px solid #FFF;
+		border-radius: 5px;
+
+		&:focus {
+			outline: none;
+			background: #DCE3E8;
+		}
+	}
+	code {
+		background: #C9C9C9;
+	}
+}
+
+//BLOG WIDGET AREA
+.widget-area {
+	float: left;
+	width: 23%;
+	margin: 5px 20px 0 20px;
+	padding: 0 20px;
+	color: #FFF;
+
+	h1 {
+		cursor: pointer;
+	}
+
+	ul {
+		margin: 0;
+		li {
+			list-style-type: none;
+			padding: 5px 10px;
+
+			a {
+				color: #FFF;
+			}
+
+			&:hover {
+				background: #C1DED9;
+				a {
+					color: #000;
+				}
+				&:nth-of-type(even) {
+					background: #A5C7D9;
+				}
 			}
 		}	
 	}
+
+	label {
+		color: #FFF;
+
+		.search-field {
+			background: none;
+			border: 1px solid peachpuff;
+			border-radius: 15px;
+			padding: 10px;
+			color: #FFF;
+
+			&:focus {
+				outline: none;
+				border: 1px solid #FFF;
+				background: rgba(255,255,255,0.1);
+			}
+		}		
+	}
 }
 
-.site-content {
-	width: 80%;
-	padding: 50px 0;
+
+/* ===================
+	NON-BLOG STYLES
+=================== */
+.site-content, .site-content-home {
+	width: 100%;
+	padding: 0;
 	margin: 0 auto;
+
+		.content-area {
+			width: 100%;
+		
+			//OVERWRITES BLOG STYLING WHITE BAR
+				footer.entry-footer {
+					padding: 0;
+					background: none;
+				}
+		}
+
+		header.entry-header {
+			margin: 0;
+		}
+		article.hentry {
+			padding: 0;
+			margin: 0;
+			background: none;
+
+				h1.entry-title {
+					font-size: $size-h2;
+					font-weight: $heavy;
+				}
+		}
+
+		//CONTENT ON STATIC HOME PAGE
+		.entry-content {
+			background: #000;
+			position: relative;
+			height: 1040px;
+			padding: 0;
+			margin: 0;
+			border-radius: 0;
+			-webkit-transition: all 1s;
+
+				.site-footer {
+					width: 100%;
+					font-size: $size-p;
+					font-weight: $light;
+					padding: 20px 0 20px 20px;
+					color: #FFF;
+					clear:both;
+						a {
+							color: #FFF;
+								&:hover {
+									color: rosybrown;
+								}
+						}
+				} // END SITE-FOOTER
+		} // END ENTRY-CONTENT
+		
+		//CONTENT ON NORMAL PAGES
+		.entry-content-pages {
+			width: 100%;
+			height: 750px;
+
+				.aboutInfo {
+					@include pageInfo(85px, -46%, 50%, #DFE7F0);
+					border-top-right-radius: 20px;
+					border-bottom-right-radius: 20px;
+				}
+				.aboutImage {
+					@include pageImage('images/bandphoto-3.jpg', 85px, 0px);
+				}
+				.aboutSlide {
+					left: 0;
+				}
+
+				.contactInfo {
+					@include pageInfo(85px, -31%, 35%, wheat);
+					border-top-right-radius: 20px;
+					border-bottom-right-radius: 20px;
+					z-index: 122;
+				}
+				.contactInfo2 {
+					@include pageInfo(85px, -31%, 38%, burlywood);
+					border-top-right-radius: 20px;
+					border-bottom-right-radius: 20px;
+					z-index: 121;
+				}
+				.contactImage {
+					@include pageImage('images/foresttrees.jpg', 85px, 0px);
+				}
+				.contactSlide {
+					left: 0;
+				}
+				.contactSlide2 {
+					left: 33%;
+					width: 30%;
+				}
+
+				h1 {
+					font-family: $font-special;
+					font-size: $blog-title;
+					font-weight: $heavy;
+					color: #000;
+				}
+				h2 {
+					font-family: $font-special;
+					font-size: $size-h2;
+					font-weight: $heavy;
+					color: #000;
+				}
+		}		
+		
+		//HOME PAGE BAND INFO
+		.bandinfo {
+			@include bandIntro('images/wc-1.png', 700px, 4000px);
+			padding: 30px;
+			color: #FFF;
+			font-weight: $light;
+			letter-spacing: $spacing;
+			border-top-left-radius: 20px;
+			border-bottom-left-radius: 20px;
+			border-left: 35px solid rgba(220,20,60,0.75);
+		}
+
+		.bandphoto {
+			@include bandIntro('images/bandphoto-1.jpg', 700px, -2500px);
+		}
+
+		/* ===================
+		 DISCOGRAPHY SECTIONS
+		=================== */
+		.pavalanche {
+			// float: left;
+			position: absolute;
+			top:0px;
+			left: 0;
+			// clear: both;
+			width: 100%;
+			height: 350px;
+			z-index: 120;
+			overflow-x: hidden;
+
+				.pavalancheImage {
+					@include discImage('images/princeavalanche.jpg', 2000px, 0px);
+				}
+				.pavHover {
+					-webkit-filter: grayscale(0);
+									filter: grayscale(0);
+					opacity: 1;
+				}
+				.pavalancheInfo {
+					@include discInfo('images/wc-2.png', 0px, 97%);
+					border-top-left-radius: 20px;
+					border-bottom-left-radius: 20px;
+					border-left: 35px solid rgba(0,139,139,0.75);
+				}
+				.pavSlide {
+					left: 49%;
+				}
+		}
+
+		// TAKE CARE TAKE CARE
+		.takecare {
+			position: absolute;
+			top:350px;
+			left: 0;
+			width: 100%;
+			height: 350px;
+			z-index: 120;
+
+				.takecareImage {
+					@include discImage('images/takecare.jpg', 0px, 4000px);		
+				}
+				.tcHover {
+					-webkit-filter: grayscale(0);
+									filter: grayscale(0);
+					opacity: 1;
+				}
+
+				.takecareInfo {
+					@include discInfo('images/wc-3.png', 0px, -48%);
+					border-top-right-radius: 20px;
+					border-bottom-right-radius: 20px;
+					border-right: 35px solid rgba(255,215,0,0.75);
+				}
+				.tcSlide {
+					left: 0;
+				}
+		}
+} //END SITE-CONTENT, SITE-CONTENT-HOME
+
+/* =====================================
+	SHAPES - HOME PAGE SITE-BRANDING AREA
+======================================== */
+
+.shapesContainer {
+	height: 800px;
+	background: none;
+}
+
+.hexagonWrap {
+	@include wrap(-50%, 3%);
+}
+
+#hexagon {
+	@include hexagon(100px, 55px, red);
+}
+#hexagon:before {
+	@include hexagonBefore(-25px, 50px, 25px, red);
+}
+#hexagon:after {
+	@include hexagonAfter(-25px, 50px, 25px, red);
+}
+
+.hexagonWrap-2 {
+	@include wrap(-69%, 22%);
+}
+#hexagon-2 {
+	@include hexagon(200px, 110px, turquoise);
+}
+#hexagon-2:before {
+	@include hexagonBefore(-50px, 100px, 50px, turquoise);
+}
+#hexagon-2:after {
+	@include hexagonAfter(-50px, 100px, 50px, turquoise);
+}
+
+.hexagonWrap-3 {
+	@include wrap(-30%, 18%);
+}
+#hexagon-3 {
+	@include hexagon(75px, 41.5px, orange);
+}
+#hexagon-3:before {
+	@include hexagonBefore(-19px, 37.5px, 19px, orange);
+}
+#hexagon-3:after {
+	@include hexagonAfter(-18.75px, 37.5px, 18.75px, orange);
+}
+
+.hexagonWrap-4 {
+	@include wrap(-31%, 29%);
+}
+#hexagon-4 {
+	@include hexagon(40px, 22px, gold);
+}
+#hexagon-4:before {
+	@include hexagonBefore(-10px, 20px, 10px, gold);
+}
+#hexagon-4:after {
+	@include hexagonAfter(-10px, 20px, 10px, gold);
+}
+
+.hexagonWrap-5 {
+	@include wrap(-35%, 40%);
+}
+#hexagon-5 {
+	@include hexagon(240px, 132px, cornflowerblue);
+}
+#hexagon-5:before {
+	@include hexagonBefore(-60px, 120px, 60px, cornflowerblue);
+}
+#hexagon-5:after {
+	@include hexagonAfter(-60px, 120px, 60px, cornflowerblue);
+}
+
+.hexagonWrap-6 {
+	@include wrap(-60%, 43%);
+}
+#hexagon-6 {
+	@include hexagon(120px, 66px, teal);
+}
+#hexagon-6:before {
+	@include hexagonBefore(-30px, 60px, 30px, teal);
+}
+#hexagon-6:after {
+	@include hexagonAfter(-30px, 60px, 30px, teal);
+}
+
+.hexagonWrap-7 {
+	@include wrap(-67%, 61%);
+}
+#hexagon-7 {
+	@include hexagon(80px, 44px, salmon);
+}
+#hexagon-7:before {
+	@include hexagonBefore(-20px, 40px, 20px, salmon);
+}
+#hexagon-7:after {
+	@include hexagonAfter(-20px, 40px, 20px, salmon);
+}
+
+.hexagonWrap-8 {
+	@include wrap(-62%, 71%);
+}
+#hexagon-8 {
+	@include hexagon(160px, 88px, blue);
+}
+#hexagon-8:before {
+	@include hexagonBefore(-40px, 80px, 40px, blue);
+}
+#hexagon-8:after {
+	@include hexagonAfter(-40px, 80px, 40px, blue);
+}
+
+.hexagonWrap-9 {
+	@include wrap(-40%, 90%);
+}
+#hexagon-9 {
+	@include hexagon(40px, 22px, olivedrab);
+}
+#hexagon-9:before {
+	@include hexagonBefore(-10px, 20px, 10px, olivedrab);
+}
+#hexagon-9:after {
+	@include hexagonAfter(-10px, 20px, 10px, olivedrab);
+}
+
+.hexagonWrap-10 {
+	@include wrap(-33%, 66%);
+}
+#hexagon-10 {
+	@include hexagon(100px, 55px, peachpuff);
+}
+#hexagon-10:before {
+	@include hexagonBefore(-25px, 50px,25px, peachpuff);
+}
+#hexagon-10:after {
+	@include hexagonAfter(-25px, 50px,25px, peachpuff);
+}
+
+.hexagonWrap-11 {
+	@include wrap(-30%, 77%);
+}
+#hexagon-11 {
+	@include hexagon(160px, 88px, mediumpurple);
+}
+#hexagon-11:before {
+	@include hexagonBefore(-40px, 80px,40px, mediumpurple);
+}
+#hexagon-11:after {
+	@include hexagonAfter(-40px, 80px,40px, mediumpurple);
+}
+
+.visible {
+	opacity: 0.95;
 }
 
 .site-footer {
-	width: 80%;
-	margin: 0 auto;
-	font-size: $size-tiny;
-
-	a {	
-		color: #000;
-		
+	width: 100%;
+	font-size: $size-p;
+	font-weight: $light;
+	padding: 20px 0 20px 20px;
+	color: #FFF;
+	clear:both;
+	a {
+		color: #FFF;
 		&:hover {
-		color: darkturquoise;
-
+			color: rosybrown;
 		}
 	}
 }
 
 .entry-footer {
 	font-size: $size-tiny;
-	a {	
-		color: #000;
-		
-		&:hover {
-		color: darkturquoise;
-
-		}
-	}
-}
-
-a {
-	text-decoration: none;
-	color: #000;
-}
-
-body {
-	background: url(images/geometry.png);
-	font-family: $font-default;
-	font-size: $size-p;
-
-	a {
-		text-decoration: none;
-		color: #000;
-
-		&:hover {
-			color: darkturquoise;
-		}
-	}
+	clear: both;
 }
 

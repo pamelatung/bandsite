@@ -50,8 +50,18 @@ $(function() {
 		$(this).toggleClass('tcSlide');
 	});
 
+	$('.aboutInfo').on('click', function() {
+		$(this).toggleClass('aboutSlide');
+	});
+	$('.contactInfo').on('click', function() {
+		$('.contactInfo, .contactInfo2').toggleClass('contactSlide');
+	});
+	$('.contactInfo2').on('click', function() {
+		$(this).toggleClass('contactSlide2');
+	});
+
 //HOME BANNER SHAPES
-	var $shapes = $('.hexagonWrap, .hexagonWrap-2, .hexagonWrap-3, .hexagonWrap-4, .hexagonWrap-5');
+	var $shapes = $('.hexagonWrap, .hexagonWrap-2, .hexagonWrap-3, .hexagonWrap-4, .hexagonWrap-5, .hexagonWrap-6, .hexagonWrap-7, .hexagonWrap-8, .hexagonWrap-9, .hexagonWrap-10, .hexagonWrap-11');
 
 	$shapes.mouseenter(function() {
 		$(this).addClass('visible');

@@ -14,6 +14,7 @@
 <?php if (is_front_page()) : ?>
 
 	<div class="entry-content">
+	<p>Content home!!!</p>
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(
